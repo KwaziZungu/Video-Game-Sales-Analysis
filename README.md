@@ -16,8 +16,6 @@ This repository features the analysis of data on video game sales for the period
 
 _([OriginalData.csv](OriginalData.csv))_ contains the original data which serves as a basis for all the analysis performed. The file is a _.csv_ extension with the data containing _16599_ active rows and _11_ columns.
 
----
-
 Columns include:
 
 1. **Rank**
