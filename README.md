@@ -32,9 +32,9 @@ Columns include:
 
 ### 2.2 vgsales.xslx
 
-_[vgsales.xslx](vgsales.xlsx)_ is the main worksheet throughout this project. It contains various summaries, tables and graphs to help in querying the data as you will see in detail on the next section.
+_[vgsales.xlsx](vgsales.xlsx)_ is the main worksheet throughout this project. It contains various summaries, tables and graphs to help in querying the data as you will see in detail on the next section.
 
-## 3. An Overview of the Sheets on the Excel Workbook ([vgsales.xslx](vgsales.xlsx))
+## 3. An Overview of the Sheets on the Excel Workbook ([vgsales.xlsx](vgsales.xlsx))
 
 ### 3.1 vgsales
 
