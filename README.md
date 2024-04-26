@@ -1,5 +1,11 @@
 # Video Game Sales
 
+<style>
+    a {
+        text-decoration: none
+    }
+</style>
+
 ## 1. Summary
 
 This repository features the analysis of data on video game sales for the period of 1980-2020. Note that all of this analysis is exploratory, no predictive analysis was performed, as this is intended for those interested in knowing about the historical sales trends of video games and their various platforms.
