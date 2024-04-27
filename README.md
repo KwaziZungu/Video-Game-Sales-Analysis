@@ -1,11 +1,5 @@
 # Video Game Sales
 
-<style>
-    a {
-        text-decoration: none
-    }
-</style>
-
 ## 1. Summary
 
 This repository features the analysis of data on video game sales for the period of 1980-2020. Note that all of this analysis is exploratory, no predictive analysis was performed, as this is intended for those interested in knowing about the historical sales trends of video games and their various platforms.
@@ -49,7 +43,7 @@ This sheet hosts the _vgsales_ table which contains a cleaned version of the dat
 ![Relative](images/Pivots0.png)
 
 _Pivots_ is the most essential sheet, as it consists of all the pivot tables created during this project.
-The first 4 tables(_Publisher_, _Genre_, _Platform_, _Region_) are filtered to display data for any chosen year.
+The first 4 tables (_Publisher_, _Genre_, _Platform_, _Region_) are filtered to display data for any chosen year.
 For example, in the 1st table, _Publisher_, select the cell above the headers with the year written on it, select the dropdown button on the right side of the cell and scroll through to select whichever year you want. This will show you data on the sales for each publisher for that particular year, and you can always filter this to see which publishers had the highest/lowest sales that year.
 The same can be done for the other 3 tables, as they serve the purpose of providing information about how each platform, publisher, genre, etc performed in that period of time.
 In the picture shown above, for instance, we can see that in 2009, action was the most popular genre making about _~21%_ of all sales that year, with _~51%_ of these sales in America.
