@@ -1,66 +1,71 @@
-# Video Game Sales
+# Financial Distress
 
 ## 1. Summary
 
-This repository features the analysis of data on video game sales for the period of 1980-2020. Note that all of this analysis is exploratory, no predictive analysis was performed, as this is intended for those interested in knowing about the historical sales trends of video games and their various platforms.
+In this project we focus on using predictive analysis to figure out which companies will be in financial distress depending on their characteristics. From the dataset that's analysed, you will notice that dummy/abstract labels are used for the data, i.e. Company names are labelled company 1, company 2, etc. Regardless, the analysis is still very useful as the algorithm can easily be applied to data containing real companies with all their features in avail.
 
-**Note** that the data for the period of 2017-2020 has been found to be spotty, irrelevant and missing during the cleaning phase. So the analysis is only valid for **1980-2016**, however, this results obtained should not be taken as facts as well since all the information here is dependent on the data _([OriginalData.csv](OriginalData.csv))_ and not much from any other external sources.
+For this analysis, the **Support Vector Machine Algorithm** is used, taking advantage of scikit-learn's **Support Vector Classifier** method. The **SVM** was chosen because because the data contains dozens of features and this algorithm has been favoured for these types of applications.
 
-## 2. Important Files
+Feel free to tackle the code yourself, and see how this algorithm fares against other machine learning methods, or improve on it as you see fit. I would love to view your analysis.
 
-### 2.1 OriginalData.csv
+## 2. Relevant Files
 
-_[OriginalData.csv](OriginalData.csv)_ contains the original data which serves as a basis for all the analysis performed. The file is a _.csv_ extension with the data containing _16599_ active rows and _11_ columns.
+Let's take a brief look at some relevant featured files in this projects
 
-Columns include:
+### (a) Financial_Distress.csv
 
-1. **Rank**
-2. **Name** - Name of the video game
-3. **Platform** - Gaming platform
-4. **Year**
-5. **Genre**
-6. **Publisher** - Company responsible for publishing the game
-7. **NA_Sales** - Sales in the North American region (in millions)
-8. **EU_Sales** - Sales in the European Union (in millions)
-9. **JP_Sales** - Sales in Japan (in millions)
-10. **Other_Sales** - Sales in other regions (in millions)
-11. **Global_Sales** - Total sales around the world
+[Financial_Distress.csv](Financial_Distress.csv) contains the original data, raw and unedited. Useful for referencing and reproducing, or improving, on the processes performed in this project.
 
-### 2.2 vgsales.xslx
+### (b) requirements.txt
 
-_[vgsales.xlsx](vgsales.xlsx)_ is the main worksheet throughout this project. This **_Microsoft Excel Worksheet_** contains various summaries, tables and graphs to help in querying the data as you will see in detail on the next section.
+[requirements.txt](requirements.txt) is a typical requirements file in software engineering, which is composed of packages and software required to run the given code.
+Thankfully, a lot of the packages used are common community softwares and you should have no problem installing them on your machine.
 
-## 3. An Overview of the Sheets on the Excel Workbook ([vgsales.xlsx](vgsales.xlsx))
+### (c) main.ipynb
 
-### 3.1 vgsales
+[main.ipynb](main.ipynb) is a python jupyter notebook file where all of our coding and analysis takes place. Familiarity with python is required of course but the code has been divided into sections:
 
-![Relative](images/vgsales.png)
+1. Packages
+2. Initialise Data
+3. Model
+4. Testing
 
-This sheet hosts the _vgsales_ table which contains a cleaned version of the data. With _16573_ rows and _10_ columns, duplicates were removed and data types corrected for relevant data fields. You can of course filter and play around with the table.
+for the code to be easy to read.
 
-### 3.2 Pivots
+## 3. Dataset Structure
 
-![Relative](images/Pivots0.png)
+The data contains _3673_ rows with _86_ columns.
 
-_Pivots_ is the most essential sheet, as it consists of all the pivot tables created during this project.
-The first 4 tables (_Publisher_, _Genre_, _Platform_, _Region_) are filtered to display data for any chosen year.
-For example, in the 1st table, _Publisher_, select the cell above the headers with the year written on it, select the dropdown button on the right side of the cell and scroll through to select whichever year you want. This will show you data on the sales for each publisher for that particular year, and you can always filter this to see which publishers had the highest/lowest sales that year.
-The same can be done for the other 3 tables, as they serve the purpose of providing information about how each platform, publisher, genre, etc performed in that period of time.
-In the picture shown above, for instance, we can see that in 2009, action was the most popular genre making about _~21%_ of all sales that year, with _~51%_ of these sales in America.
+- The **first row** is the header.
+- **First column**, called **Company** lists all the companies, with _422_ companies in total (note the companies are listed/labelled as numbers).
+- **Second column**, called **Time** shows the time periods, also labelled as numbers.
+- **Third column**, called **Financial Distress** tells us about the financial distress level of the company at that period in time. Although this is shown as random floating numbers, note that if the value in this column is less than _-0.5_ then the company is in distress but it is healthy otherwise.
+- The remaining _83_ columns, called **'x1', 'x2', ..., 'x83'** are features for each company at each time period.
 
-![Relative](images/Pivots1.png)
+As an example on how to read this data using the first _3_ columns,
+company _1_ was financially healthy at time _3_ but it was in distress at time _4_.
 
-The remaining tables serve as a basis for visualisations or graphs. These are self explanatory and feel free to check them out as you like.
+## 4. Machine Learning Algorithm To Use
 
-### 3.3 Dashboard
+The [Support Vector Machine](https://scikit-learn.org/stable/modules/svm.html) algorithm is being used for this data, due to the multi-dimensional nature of the input variable/features.
+For the model's setup, we use the **SVC (Support Vector Classifier)** method provided by Scikit Learn. sk-learn is considered as community standard so every action here is easy to replicate.
 
-![Relative](images/Dashboard0.png) ![Relative](images/Dashboard1.png)
+For the model setup ( feel free to study the code on how this was achieved ):
 
-A collection of all relevant visuals. Again, these are self explanatory, however it should be noted that sales trends for 2017-2020 are severely lacking due to corruption in the original data. There is also an unknown section of years which shows sales data for unrecorded years.
+- Input data, **X**, consists of the _83_ features columns and the _Time_ column.
+- Output data, **Financial Distress** or **y**, consists of dummy values _True_ and _False_, where _True_ indicates that a company is in distress at that period.
+- _70%_ of the overall data is used for training, while the remaining _30%_ is being used for testing ( Data points chosen at random ).
+- The **Regularization Parameter (C)** can be found using an optimisation method called _Grid Search_, _C=1_ is the best estimate obtained for the parameter.
+- The **_linear_** **kernel function** is being used for this model as it best fits the current data ( This was discovered through trial and error ).
+- Below is a graph representing the actual values for the _30%_ test data consisting of _1102_ data points or predictions: ![Relative](images/TrueDataPlot.png) _Time_ and _x12_ are arbitrary choices for plot variables, any of the **X** columns/features can be plotted against each other.
 
-In the trends graph you can use field buttons on the bottom left to help filter the graphs by publisher, platform, game, etc. This is very useful for visualising the performance of these section over time.
+## 5. Results
 
-## 4. Conclusion
+A **Sample**, for our purposes can be defined as any company at a specific period of time. For example, the sample described as company _1_ at time _3_ was predicted to be financially healthy.
 
-There is definitly more we could've done with this data, I had lots of fun working with it and it wasn't too demanding as I used MS Excel which is a tool used by most business analysts in their everyday use.
-The tables and visualisations provide nice summaries for the data.
+- _1102_ predicitions were made by the model (this can also be taken as the number of samples). _1053_ or _95.55%_ of samples were predicted to be financially healthy and _49_ or _4.45%_ were predicted to be in financial distress.
+- The model predicted financially healthy samples with an accuracy of _~97%_ and the prediction for samples in distress was only _~48%_ accurate. The overall accuracy was _~95%_. _Possible signs of overfitting_.
+- _1040_ or _94.37%_ of the samples were correctly predicted to be healthy, _12_ or _1.09%_ were correctly predicted to be in distress, _13_ or _1.18%_ were falsely predicted to be in distress and _37_ or _3.36%_ were falsely predicted as healthy.
+- Below is a plot for the predicted data for visual comparison along with the plot on the previous chapter: ![Relative](images/PredDataPlot.png)
+
+## 6. Recommendations
